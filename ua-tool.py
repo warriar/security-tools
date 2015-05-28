@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+#user-agent comparison tool
+
+#props to joff tyher which rir tool i used as a basis and the security weekly crew!
 #https://bitbucket.org/jsthyer/rirtools/src/658e628a3c813b6bdef3003997915eaa977e40d3/riracl.py?at=master
 
 
@@ -35,8 +38,9 @@ CREATE TABLE IF NOT EXISTS useragents
 	def import_useragents(self, comment, uastring, count):
 		cur = self.dbh.cursor()
 		
-		sql = "SELECT * FROM useragents WHERE useragent = ?"
-
+		sql = """\
+SELECT * FROM useragents WHERE useragent = ?
+"""
 		cur.execute(sql, [uastring])
 		
 		i = cur.fetchone()
@@ -85,7 +89,7 @@ CREATE TABLE IF NOT EXISTS useragents
 
 if __name__ == '__main__':
 
-	VERSION = '20150521_1'
+	VERSION = '20150528_1'
 	desc = """
 [*] ---------------------------------------------
 [*] %s version %s
